@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <script>
-            function loadDoc(){
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function(){
-                    document.getElementById("demo").innerHTML = this.responseText;
-                }
-                xhttp.open("GET", "velha_raposa.txt",true);
-                xhttp.send();
-            }
-
-        </script>
-    </head>
-    <body>
-        <div id="demo">
-            <h1>O Ajax vai mudar tudo!</h1>
-            <button type="button" 
-                onclick="loadDoc()">Muda Tudo</button>
-        </div>
-    </body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo Ajax</title>
+    <script>
+        function loadDoc() {
+            fetch('velha_raposa.txt')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('demo').innerHTML = data;
+                })
+                .catch(error => console.error('Erro ao carregar o arquivo:', error));
+        }
+    </script>
+</head>
+<body>
+    <div id="demo">
+        <h1>O Ajax vai mudar tudo!</h1>
+        <button type="button" onclick="loadDoc()">Muda Tudo</button>
+    </div>
+</body>
 </html>
